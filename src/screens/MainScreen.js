@@ -5,6 +5,21 @@ export default function MainScreen() {
     return (
         <View>
             <Text>mainScreen</Text>
+            <Text>mainScreen</Text>
+            <Text>mainScreen</Text>
+            <Text>mainScreen</Text>
+            <Text>mainScreen</Text>
+            <Text>mainScreen</Text>
+            <Text>mainScreen</Text>
+            <Text>mainScreen</Text>
+            <Text>mainScreen</Text>
+            <Text>mainScreen</Text>
+            <Text>mainScreen</Text>
+            <Text>mainScreen</Text>
+            <Text>mainScreen</Text>
+            <Text>mainScreen</Text>
+            <Text>mainScreen</Text>
+            <Text>mainScreen</Text>
         </View>
     )
 }

@@ -1,20 +1,42 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SplashScreen from './src/screens/SplashScreen'
+import LayoutScreen from './src/screens/LayoutScreen';
+import RegisterScreen from './src/screens/RegisterScreen';
+import LoginScreen from './src/screens/LoginScreen';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar } from 'react-native';
 
 export default function App() {
+
+  const Stack = createNativeStackNavigator();
+
   return (
-    <View className="bg-gray-800 flex-1" style={styles.container}>
-      <Text className="font-bold bg-green-600 text-4xl" >Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+
+    <NavigationContainer>
+
+      <SafeAreaView style={{ flex: 1 }}>
+
+        <Stack.Navigator
+
+          initialRouteName='Layout'
+
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+
+          <Stack.Screen name='Splash' component={SplashScreen} />
+          <Stack.Screen name='Register' component={RegisterScreen} />
+          <Stack.Screen name='Login' component={LoginScreen} />
+          <Stack.Screen name='Layout' component={LayoutScreen} />
+
+        </Stack.Navigator>
+
+      </SafeAreaView>
+
+      <StatusBar />
+
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
