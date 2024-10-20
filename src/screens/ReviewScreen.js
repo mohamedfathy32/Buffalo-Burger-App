@@ -1,7 +1,11 @@
+
+import { View, Text } from 'react-native'
 import React from 'react'
 
 export default function ReviewScreen() {
   return (
-    <div>ReviewScreen</div>
+    <View>
+      <Text>ReviewScreen</Text>
+    </View>
   )
 }

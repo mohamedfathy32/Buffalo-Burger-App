@@ -1,7 +1,13 @@
+import { View, Text, Button } from 'react-native'
 import React from 'react'
 
-export default function Account() {
+export default function Account({navigation}) {
   return (
-    <div>Account</div>
+    <View>
+      <Text>Account</Text>
+      <Button onPress={() => { navigation.navigate('Settings') }}
+        title='Back'
+      />
+    </View>
   )
 }

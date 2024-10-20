@@ -7,7 +7,7 @@ import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
-export default function ProfileScreen() {
+export default function ProfileScreen({ navigation }) {
   return (
 
     <SafeAreaView className='flex-1 bg-white'>
@@ -37,7 +37,9 @@ export default function ProfileScreen() {
         <Hr />
 
         {/* Row 2 - Requests*/}
-        <TouchableOpacity onPress={() => { }}>
+        <TouchableOpacity onPress={() => {
+          navigation.navigate('Requests');
+        }}>
 
           <View className='flex flex-row items-center my-6 w-11/12 mx-auto justify-end '>
 
@@ -50,7 +52,7 @@ export default function ProfileScreen() {
         <Hr />
 
         {/* Row 3 - Addresses*/}
-        <TouchableOpacity onPress={() => { }}>
+        <TouchableOpacity onPress={() => { navigation.navigate('Address'); }}>
 
           <View className='flex flex-row items-center my-6 w-11/12 mx-auto justify-end '>
 
@@ -63,7 +65,7 @@ export default function ProfileScreen() {
         <Hr />
 
         {/* Row 4 - Shopping Cart*/}
-        <TouchableOpacity onPress={() => { }}>
+        <TouchableOpacity onPress={() => { navigation.navigate('Cart'); }}>
 
           <View className='flex flex-row items-center my-6 w-11/12 mx-auto justify-end '>
 
@@ -75,8 +77,8 @@ export default function ProfileScreen() {
 
         <Hr />
 
-        {/* Row 5 - Evaluation*/}
-        <TouchableOpacity onPress={() => { }}>
+        {/* Row 5 - Review / Evaluation*/}
+        <TouchableOpacity onPress={() => { navigation.navigate('Review'); }}>
 
           <View className='flex flex-row items-center my-6 w-11/12 mx-auto justify-end '>
 

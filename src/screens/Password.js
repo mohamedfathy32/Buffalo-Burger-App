@@ -1,7 +1,13 @@
+import { View, Text, Button } from 'react-native'
 import React from 'react'
 
-export default function Password() {
+export default function Password({navigation}) {
   return (
-    <div>Password</div>
+    <View>
+      <Text>Password</Text>
+      <Button onPress={() => { navigation.navigate('Settings'); }}
+        title='Back'
+      />
+    </View>
   )
 }
