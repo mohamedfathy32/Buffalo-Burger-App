@@ -1,6 +1,5 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import MainScreen from './mainScreen';
 import MenuScreen from './MenuScreen';
 import Entypo from '@expo/vector-icons/Entypo';
 import AntDesign from '@expo/vector-icons/AntDesign';
@@ -16,6 +15,7 @@ import ReviewScreen from './ReviewScreen';
 import Account from './Account';
 import Password from './Password';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import MainScreen from './MainScreen';
 
 export default function LayoutScreen({ navigation }) {
 
@@ -24,8 +24,10 @@ export default function LayoutScreen({ navigation }) {
   return (
 
     <Tab.Navigator
-      // initialRouteName='Main'
+      initialRouteName='Main'
       screenOptions={({ route }) => ({
+
+        // headerShown: false,
 
         tabBarLabel: ({ focused }) => (
           <Text className={focused ? 'text-orange-500' : ''}>

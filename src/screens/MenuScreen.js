@@ -1,10 +1,18 @@
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import React from 'react'
+import ProductCard from '../components/ProductCard'
 
 export default function MenuScreen() {
   return (
-    <View>
-      <Text>MenuScreen</Text>
-    </View>
+    <ScrollView>
+
+      <View>
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+      </View>
+    </ScrollView>
   )
 }
