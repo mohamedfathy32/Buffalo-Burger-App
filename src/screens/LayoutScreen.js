@@ -16,6 +16,7 @@ import Account from './Account';
 import Password from './Password';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import MainScreen from './MainScreen';
+import MealDetails from './MealDetails';
 
 export default function LayoutScreen({ navigation }) {
 
@@ -168,6 +169,24 @@ export default function LayoutScreen({ navigation }) {
       <Tab.Screen name='Password' component={Password}
         options={{
           tabBarButton: () => null,
+
+        }}
+      />
+
+      <Tab.Screen name='MealDetails' component={MealDetails}
+        options={{
+          tabBarStyle: { display: 'none' },
+          tabBarButton: () => null,
+
+          header: () => <View className='flex flex-row justify-end items-center my-3 '>
+            <Text className='mx-4 text-xl font-bold'>Saved Addresses</Text>
+            <TouchableOpacity className='mx-4' onPress={() => { navigation.goBack(); }}>
+              {/* En */}
+              {/* <MaterialIcons name='arrow-back' size={24} /> */}
+              {/* Ar */}
+              <MaterialIcons name='arrow-forward' size={24} />
+            </TouchableOpacity>
+          </View>,
 
         }}
       />

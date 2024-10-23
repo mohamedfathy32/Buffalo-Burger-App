@@ -1,7 +1,10 @@
+import { View, Text } from 'react-native'
 import React from 'react'
 
 export default function MealDetails() {
   return (
-    <div>MealDetails</div>
+    <View>
+      <Text>Details</Text>
+    </View>
   )
 }
