@@ -60,13 +60,53 @@ export default function LayoutScreen({ navigation }) {
 
       <Tab.Screen name='Menu' component={MenuScreen}
         options={{
-          tabBarIcon: ({ focused }) => < AntDesign name="appstore1" size={24} color={focused ? "#f97316" : "black"} />
+          tabBarIcon: ({ focused }) => < AntDesign name="appstore1" size={24} color={focused ? "#f97316" : "black"} />,
+          header: () => <View className='flex flex-row justify-between py-3'>
+
+            <TouchableOpacity onPress={() => { navigation.navigate('Cart'); }}>
+              <View className='relative mx-10 p-1 bg-orange-500 rounded-full flex flex-row justify-center'>
+                <MaterialIcons name='shopping-bag' size={24} color={'white'} />
+
+                <View className='absolute -top-1/3 -right-2/3 w-6 h-6 bg-white rounded-full flex justify-center items-center'>
+                  <View className='w-5 h-5 bg-orange-500 rounded-full flex justify-center items-center'>
+                    <Text className='text-white'>9</Text>
+                  </View>
+                </View>
+
+              </View>
+            </TouchableOpacity>
+
+            <View className='flex flex-row justify-center w-2/3'>
+              <Text className='font-bold text-2xl px-5'>Hello, Mohamed</Text>
+            </View>
+
+          </View>
         }}
       />
 
       <Tab.Screen name='Main' component={MainScreen}
         options={{
           tabBarIcon: ({ focused }) => <Entypo name="home" size={24} color={focused ? "#f97316" : "black"} />,
+          header: () => <View className='flex flex-row justify-between py-3'>
+
+            <TouchableOpacity onPress={() => { navigation.navigate('Cart'); }}>
+              <View className='relative mx-10 p-1 bg-orange-500 rounded-full flex flex-row justify-center'>
+                <MaterialIcons name='shopping-bag' size={24} color={'white'} />
+
+                <View className='absolute -top-1/3 -right-2/3 w-6 h-6 bg-white rounded-full flex justify-center items-center'>
+                  <View className='w-5 h-5 bg-orange-500 rounded-full flex justify-center items-center'>
+                    <Text className='text-white'>9</Text>
+                  </View>
+                </View>
+
+              </View>
+            </TouchableOpacity>
+
+            <View className='flex flex-row justify-center w-2/3'>
+              <Text className='font-bold text-2xl px-5'>Hello, Mohamed</Text>
+            </View>
+
+          </View>
         }}
       />
 
