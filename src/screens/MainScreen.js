@@ -1,5 +1,6 @@
-import { View, Text, ScrollView } from 'react-native'
 import React from 'react'
+import { View, Text, ScrollView } from 'react-native'
+import Offers from '../components/Offers';
 import MainProductCard from '../components/MainProductCard'
 import TechnicalSupport from '../components/TechnicalSupport';
 
@@ -80,7 +81,14 @@ export default function MainScreen() {
 
             <View className='flex-1'>
                 <View className='m-5 flex flex-row'>
-                    <Text className='font-bold text-orange-500 text-lg'>The Special</Text>
+                    <Text className='font-bold text-orange-500 text-lg uppercase'>Hot offers</Text>
+                </View>
+
+                <Offers />
+
+                {/* Products */}
+                <View className='m-5 flex flex-row'>
+                    <Text className='font-bold text-orange-500 text-lg uppercase'>The Special</Text>
                 </View>
                 {products.map((product) => <MainProductCard key={product.title} prd={product} />)}
 
