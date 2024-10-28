@@ -5,8 +5,8 @@ export default function Test({ navigation }) {
     return (
         <View>
             <Text>Test</Text>
-            <Button onPress={() => { navigation.navigate('Settings'); }}
-                title='Settings'
+            <Button onPress={() => { navigation.pop(); }}
+                title='Back'
             />
         </View>
     )
