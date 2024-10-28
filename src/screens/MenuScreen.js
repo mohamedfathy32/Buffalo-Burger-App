@@ -19,9 +19,9 @@ export default function MenuScreen({ navigation }) {
       <Offers />
 
       
-      <CategorySection category="burger sandwiches" />
-      <CategorySection category="chicken sandwiches" />
-      <CategorySection category="keto & light sandwiches" />
+      <CategorySection category="burger" />
+      <CategorySection category="chicken" />
+      <CategorySection category="keto" />
       <CategorySection category="appetizers" />
       <CategorySection category="sauces" />
       <CategorySection category="desserts" />

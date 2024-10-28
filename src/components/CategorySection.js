@@ -1,10 +1,10 @@
 // CategorySection.js
-import React from 'react';
-import { View, Text } from 'react-native';
-import ProductCard from './ProductCard';
-import { productsList } from '../utils/data';
+import React from "react";
+import { View, Text, TouchableOpacity } from "react-native";
+import ProductCard from "./ProductCard";
+import { productsList } from "../utils/data";
 
-const CategorySection = ({ category}) => {
+const CategorySection = ({ category , navigation}) => {
   return (
     <>
       <View className="m-5 flex flex-row">
@@ -14,7 +14,14 @@ const CategorySection = ({ category}) => {
       </View>
       {productsList.map((product) =>
         product.category === category ? (
-          <ProductCard key={product.title.en} product={product} />
+          <TouchableOpacity
+            key={product.title.en}
+            onPress={() => {
+              navigation.navigate("MealDetails", { product });
+            }}
+          >
+            <ProductCard product={product} />
+          </TouchableOpacity>
         ) : null
       )}
     </>
