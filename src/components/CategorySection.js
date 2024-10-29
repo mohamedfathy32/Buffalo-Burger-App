@@ -15,7 +15,7 @@ const CategorySection = ({ category , navigation}) => {
       {productsList.map((product) =>
         product.category === category ? (
           <TouchableOpacity
-            key={product.title.en}
+            key={product.title}
             onPress={() => {
               navigation.navigate("MealDetails", { product });
             }}

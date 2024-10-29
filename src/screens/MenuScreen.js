@@ -19,13 +19,15 @@ export default function MenuScreen({ navigation }) {
       <Offers />
 
       
-      <CategorySection category="burger" />
-      <CategorySection category="chicken" />
-      <CategorySection category="keto" />
-      <CategorySection category="appetizers" />
-      <CategorySection category="sauces" />
-      <CategorySection category="desserts" />
-      <CategorySection category="drinks" />
+      <CategorySection navigation={navigation} category="burger" />
+      <CategorySection navigation={navigation} category="chicken" />
+      <CategorySection navigation={navigation} category="keto" />
+      <CategorySection navigation={navigation} category="appetizers" />
+      <CategorySection navigation={navigation} category="sauces" />
+      <CategorySection navigation={navigation} category="desserts" />
+      <CategorySection navigation={navigation} category="drinks" />
+
+      
     </ScrollView>
   );
 }
