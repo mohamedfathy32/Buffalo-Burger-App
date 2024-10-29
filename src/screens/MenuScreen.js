@@ -1,11 +1,10 @@
 import { View, Text, ScrollView } from "react-native";
 import React from "react";
-import ProductCard from "../components/ProductCard";
 import Offers from "../components/Offers";
-import { productsList } from "../utils/data";
 import CategorySection from "../components/CategorySection";
 
 export default function MenuScreen({ navigation }) {
+  
   return (
     <ScrollView>
       {/* Header */}
@@ -18,16 +17,14 @@ export default function MenuScreen({ navigation }) {
 
       <Offers />
 
-      
-      <CategorySection navigation={navigation} category="burger" />
-      <CategorySection navigation={navigation} category="chicken" />
-      <CategorySection navigation={navigation} category="keto" />
+
+      <CategorySection navigation={navigation} category="burger sandwiches" />
+      <CategorySection navigation={navigation} category="chicken sandwiches" />
+      <CategorySection navigation={navigation} category="keto & light sandwiches" />
       <CategorySection navigation={navigation} category="appetizers" />
       <CategorySection navigation={navigation} category="sauces" />
       <CategorySection navigation={navigation} category="desserts" />
       <CategorySection navigation={navigation} category="drinks" />
-
-      
     </ScrollView>
   );
 }

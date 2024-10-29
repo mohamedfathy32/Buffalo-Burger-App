@@ -1,10 +1,21 @@
 // CategorySection.js
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import ProductCard from "./ProductCard";
-import { productsList } from "../utils/data";
+import { fetchData } from "../utils/firebase";
 
-const CategorySection = ({ category , navigation}) => {
+const CategorySection = ({ category, navigation }) => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const getProducts = async () => {
+      const data = await fetchData();
+      setProducts(data);
+    };
+
+    getProducts();
+  }, []);
+
   return (
     <>
       <View className="m-5 flex flex-row">
@@ -12,7 +23,7 @@ const CategorySection = ({ category , navigation}) => {
           {category}
         </Text>
       </View>
-      {productsList.map((product) =>
+      {products.map((product) =>
         product.category === category ? (
           <TouchableOpacity
             key={product.title}

@@ -17,8 +17,8 @@ export default function ProductCard({ product }) {
             </View>
 
             <View className="w-2/3 h-32">
-                <Text className="text-lg font-semibold uppercase">{product.title}</Text>
-                <Text className="text-neutral-400 my-2 line-clamp-2">{product.description.en || product.description}</Text>
+                <Text className="text-lg font-semibold uppercase">{product.title.en}</Text>
+                <Text className="text-neutral-400 my-2 line-clamp-2">{product.description?.en || product.description}</Text>
 
                 <View className="flex-row justify-between items-center mt-auto">
                     <Text className="text-xl font-bold">{product.price} L.E</Text>
