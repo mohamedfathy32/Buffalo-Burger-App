@@ -573,12 +573,12 @@ export const menuCategoriesList = [
 ]
 
 export const comboOptionsList = [
-    {
-        title: { en: "no combo", ar: "لا اضافة" },
-        image: "https://buffaloburger.com/_next/image?url=https%3A%2F%2Fbuffalonlineorderingprod.s3-accelerate.amazonaws.com%2Fmenu_items%2Fa76de047b66f2511962b600232c60769.png&w=256&q=75",
-        description: { en: "Choose sandwich only", ar: "ساندوش فقط" },
-        price: 0
-    },
+    // {
+    //     title: { en: "no combo", ar: "لا اضافة" },
+    //     image: "https://buffaloburger.com/_next/image?url=https%3A%2F%2Fbuffalonlineorderingprod.s3-accelerate.amazonaws.com%2Fmenu_items%2Fa76de047b66f2511962b600232c60769.png&w=256&q=75",
+    //     description: { en: "Choose sandwich only", ar: "ساندوش فقط" },
+    //     price: 0
+    // },
     {
         title: { en: "onion rings combo", ar: "حلقات البصل المقرمشة" },
         image: "https://buffaloburger.com/_next/image?url=https%3A%2F%2Fbuffalonlineorderingprod.s3.eu-west-1.amazonaws.com%2Fmenu_items%2F00ce021cd267db0707e68103dbfc6b77.png&w=96&q=75",
