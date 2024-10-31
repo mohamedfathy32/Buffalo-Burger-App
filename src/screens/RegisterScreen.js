@@ -3,13 +3,13 @@ import { Text } from 'react-native';
 
 export default function RegisterScreen(props) {
 
-  useEffect(() => {
-    const t = setTimeout(() => {
-      props.navigation.navigate('Login');
-    }, 3000);
+  // useEffect(() => {
+  //   const t = setTimeout(() => {
+  //     props.navigation.navigate('Login');
+  //   }, 3000);
 
-    return () => clearTimeout(t);
-  }, [])
+  //   return () => clearTimeout(t);
+  // }, [])
 
   return (
     <Text>RegisterScreen</Text>
