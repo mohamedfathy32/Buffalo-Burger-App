@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Image, ScrollView } from 'react-native'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import ComboOption from '../components/ComboOption';
 import { breadList, comboOptionsList, extrasList } from '../utils/data';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
 export default function MealDetails({ navigation, route }) {
@@ -27,6 +28,44 @@ export default function MealDetails({ navigation, route }) {
     );
 
   };
+
+  {/* 
+  
+
+    userId:[
+    {prdTitle:'',prdDescription,prdImg:'',prdPrice:155,volume:volume,bread:bread,combo:combo,extraList:[]},
+    ],
+    
+
+  */}
+
+  const addToCart = async () => {
+    try {
+
+      const productsStorage = await AsyncStorage.getItem('userId');
+      let productsArray = productsStorage ? JSON.parse(productsStorage) : [];
+  
+      productsArray.push({
+        title: product.title.en,
+        description: product.description.en || product.description,
+        img: product.image,
+        price: product.price,
+        total,
+        volume,
+        bread,
+        combo,
+        extraList,
+      });
+  
+      await AsyncStorage.setItem('userId', JSON.stringify(productsArray));
+      alert('Added To Cart !');
+      console.warn(productsArray);
+    } catch (e) {
+      console.warn(e);
+    }
+  };
+  
+
 
   return (
     <>
@@ -136,7 +175,7 @@ export default function MealDetails({ navigation, route }) {
             </View>
 
 
-            {/* Extras VV*/}
+            {/* Extras */}
             <View className='h-auto bg-neutral-200 my-1'>
 
               <Text className='text-center font-bold text-lg my-4'>Extras</Text>
@@ -173,7 +212,11 @@ export default function MealDetails({ navigation, route }) {
           </ScrollView>
 
           {/* Add Button */}
-          <TouchableOpacity className='bg-orange-600 w-11/12 mx-auto my-6 p-3 rounded-xl flex flex-row justify-between'>
+          <TouchableOpacity className='bg-orange-600 w-11/12 mx-auto my-6 p-3 rounded-xl flex flex-row justify-between'
+            onPress={async () => {
+              await addToCart();
+            }}
+          >
 
             <View className='flex flex-row '>
               <MaterialIcons name='shopping-bag' size={24} color={'white'} />

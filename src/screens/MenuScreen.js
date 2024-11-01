@@ -5,6 +5,7 @@ import Offers from '../components/Offers'
 import { productsList } from '../utils/data'
 
 export default function MenuScreen({ navigation }) {
+
   return (
     <ScrollView>
 
