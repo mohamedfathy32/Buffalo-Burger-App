@@ -1,9 +1,11 @@
-import { React, useState } from 'react'
+import { React, useContext, useState } from 'react'
 import { View, Text, TouchableOpacity, Image, ScrollView } from 'react-native'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import ComboOption from '../components/ComboOption';
 import { breadList, comboOptionsList, extrasList } from '../utils/data';
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { NotificationContext } from '../utils/context';
+
 
 
 export default function MealDetails({ navigation, route }) {
@@ -15,6 +17,7 @@ export default function MealDetails({ navigation, route }) {
   const [extra, setExtra] = useState(0);
   const [extraList, setExtraList] = useState([0, 0, 0, 0, 0, 0]);
   const total = product.price + breadList[bread].price + combo.price + extra;
+  const { notifications, updateNotifications } = useContext(NotificationContext);
 
   const extraCal = (index) => {
     setExtraList(
@@ -41,10 +44,9 @@ export default function MealDetails({ navigation, route }) {
 
   const addToCart = async () => {
     try {
-
       const productsStorage = await AsyncStorage.getItem('userId');
       let productsArray = productsStorage ? JSON.parse(productsStorage) : [];
-  
+
       productsArray.push({
         title: product.title.en,
         description: product.description.en || product.description,
@@ -56,15 +58,15 @@ export default function MealDetails({ navigation, route }) {
         combo,
         extraList,
       });
-  
+
       await AsyncStorage.setItem('userId', JSON.stringify(productsArray));
       alert('Added To Cart !');
-      console.warn(productsArray);
+      updateNotifications();
     } catch (e) {
       console.warn(e);
     }
   };
-  
+
 
 
   return (

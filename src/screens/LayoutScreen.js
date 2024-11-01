@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import MenuScreen from './MenuScreen';
 import Entypo from '@expo/vector-icons/Entypo';
@@ -15,25 +15,11 @@ import Account from './Account';
 import Password from './Password';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import MainScreen from './MainScreen';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NotificationContext } from '../utils/context';
 
 export default function LayoutScreen({ navigation }) {
 
-  const [notification, setNotification] = useState(0);
-
-  useEffect(() => {
-
-    const getNotification = async () => {
-
-      const productsStorage = await AsyncStorage.getItem('userId');
-      let productsArray = productsStorage ? JSON.parse(productsStorage) : [];
-      setNotification(productsArray.length);
-    };
-    getNotification();
-    console.warn(notification);
-
-
-  }, []);
+  const { notifications, updateNotifications } = useContext(NotificationContext);
 
   const Tab = createBottomTabNavigator();
 
@@ -81,9 +67,9 @@ export default function LayoutScreen({ navigation }) {
               <View className='relative mx-10 p-1 bg-orange-500 rounded-full flex flex-row justify-center'>
                 <MaterialIcons name='shopping-bag' size={24} color={'white'} />
 
-                <View className={`${notification ? 'flex' : 'hidden'} absolute -top-1/3 -right-2/3 w-6 h-6 bg-white rounded-full justify-center items-center`}>
+                <View className={`${notifications ? 'flex' : 'hidden'} absolute -top-1/3 -right-2/3 w-6 h-6 bg-white rounded-full justify-center items-center`}>
                   <View className='w-5 h-5 bg-orange-500 rounded-full flex justify-center items-center'>
-                    <Text className='text-white'>{notification}</Text>
+                    <Text className='text-white'>{notifications}</Text>
                   </View>
                 </View>
 
@@ -107,9 +93,9 @@ export default function LayoutScreen({ navigation }) {
               <View className='relative mx-10 p-1 bg-orange-500 rounded-full flex flex-row justify-center'>
                 <MaterialIcons name='shopping-bag' size={24} color={'white'} />
 
-                <View className={`${notification ? 'flex' : 'hidden'} absolute -top-1/3 -right-2/3 w-6 h-6 bg-white rounded-full justify-center items-center`}>
+                <View className={`${notifications ? 'flex' : 'hidden'} absolute -top-1/3 -right-2/3 w-6 h-6 bg-white rounded-full justify-center items-center`}>
                   <View className='w-5 h-5 bg-orange-500 rounded-full flex justify-center items-center'>
-                    <Text className='text-white'>{notification}</Text>
+                    <Text className='text-white'>{notifications}</Text>
                   </View>
                 </View>
 
