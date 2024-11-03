@@ -1,8 +1,20 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import React from 'react'
+import React, { useEffect } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function CartScreen({ navigation }) {
+
+  const printLocal = async () => {
+    const arr = await AsyncStorage.getItem('userId') || [];
+    console.log(arr);
+
+  };
+
+  useEffect(() => {
+    printLocal();
+  }, []);
+
   return (
     <View className='flex-1'>
 
