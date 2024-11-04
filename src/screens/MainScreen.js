@@ -4,6 +4,7 @@ import Offers from "../components/Offers";
 import MainProductCard from "../components/MainProductCard";
 import TechnicalSupport from "../components/TechnicalSupport";
 import { productsList } from "../utils/data";
+import ProductCard from "../components/ProductCard";
 
 export default function MainScreen() {
   // const products = [
@@ -95,7 +96,8 @@ export default function MainScreen() {
         </View>
         {productsList.map((product) =>
           product.topSelling == true ? (
-            <MainProductCard key={product.title} prd={product} />
+            <MainProductCard key={product.title.en} product={product} />
+            // <ProductCard key={product.title.en} product={product}/>
           ) : null
         )}
 

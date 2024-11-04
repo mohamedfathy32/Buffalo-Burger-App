@@ -9,7 +9,7 @@ export default function Offers() {
                 <TouchableOpacity key={offer.title}>
                     <View  className="h-40 w-60 mx-1 rounded-xl flex flex-row bg-transparent items-center justify-center">
                         <Image
-                            source={{ uri: offer.image }}
+                            source={{ uri: offer.images.keen }}
                             className="w-full h-full rounded-xl"
                             resizeMode="stretch"
                         />

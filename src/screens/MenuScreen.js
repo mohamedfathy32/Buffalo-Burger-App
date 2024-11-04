@@ -1,7 +1,9 @@
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import React from "react";
 import Offers from "../components/Offers";
 import CategorySection from "../components/CategorySection";
+import { productsList } from "../utils/data";
+import ProductCard from "../components/ProductCard";
 
 export default function MenuScreen({ navigation }) {
 
@@ -16,6 +18,14 @@ export default function MenuScreen({ navigation }) {
       </View>
 
       <Offers />
+
+      {/* {productsList.map((product) => <TouchableOpacity
+        key={product.title.en}
+        onPress={() => { navigation.navigate('MealDetails',{product}); }}
+      >
+        <ProductCard product={product} />
+      </TouchableOpacity>
+      )} */}
 
 
       <CategorySection navigation={navigation} category="burger sandwiches" />
