@@ -30,7 +30,7 @@ const auth = initializeAuth(app, {
 // Function to fetch data from Firebase
 export const fetchData = async () => {
   try {
-    const querySnapshot = await getDocs(collection(db, "product"));
+    const querySnapshot = await getDocs(collection(db, "products"));
     const products = querySnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),

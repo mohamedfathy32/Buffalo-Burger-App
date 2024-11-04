@@ -11,6 +11,7 @@ const CategorySection = ({ category, navigation }) => {
     const getProducts = async () => {
       const data = await fetchData();
       setProducts(data);
+      // console.log(data);
     };
 
     getProducts();
@@ -26,7 +27,7 @@ const CategorySection = ({ category, navigation }) => {
       {products.map((product) =>
         product.category === category ? (
           <TouchableOpacity
-            key={product.title}
+            key={product.title.en}
             onPress={() => {
               navigation.navigate("MealDetails", { product });
             }}
