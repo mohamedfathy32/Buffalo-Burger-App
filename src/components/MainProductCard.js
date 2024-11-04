@@ -46,7 +46,7 @@ export default function MainProductCard({ prd = false }) {
                     <Text className="text-neutral-400 my-2 line-clamp-2">{product.description}</Text>
 
                     <View className="flex-row justify-between items-center mt-auto">
-                        <Text className="text-xl font-bold">{product.details?.size[0].price||product.price} L.E</Text>
+                        <Text className="text-xl font-bold">{product.details?.size[0].price||product.price} EGP</Text>
                         <View className='bg-orange-500 p-1 rounded-full'>
                             <MaterialIcons name='add-circle-outline' size={24} color={'white'} />
                         </View>

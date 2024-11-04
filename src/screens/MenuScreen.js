@@ -4,7 +4,7 @@ import Offers from "../components/Offers";
 import CategorySection from "../components/CategorySection";
 
 export default function MenuScreen({ navigation }) {
-  
+
   return (
     <ScrollView>
       {/* Header */}

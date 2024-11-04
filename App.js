@@ -10,32 +10,35 @@ import Test from "./src/screens/Test";
 import CartScreen from "./src/screens/CartScreen";
 import MealDetails from "./src/screens/MealDetails";
 import { AuthProvider } from "./AuthContext ";
+import { NotificationProvider } from "./src/utils/context";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
 
   return (
     <AuthProvider>
-      <NavigationContainer>
-        <SafeAreaView style={{ flex: 1 }}>
-          <Stack.Navigator
-            initialRouteName="Login"
-            screenOptions={{
-              headerShown: false,
-            }}
-          >
-            <Stack.Screen name="Splash" component={SplashScreen} />
-            <Stack.Screen name="Register" component={RegisterScreen} />
-            <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="Layout" component={LayoutScreen} />
-            <Stack.Screen name="Cart" component={CartScreen} />
-            <Stack.Screen name="MealDetails" component={MealDetails} />
-            <Stack.Screen name="Test" component={Test} />
-          </Stack.Navigator>
-        </SafeAreaView>
+      <NotificationProvider>
+        <NavigationContainer>
+          <SafeAreaView style={{ flex: 1 }}>
+            <Stack.Navigator
+              initialRouteName="Login"
+              screenOptions={{
+                headerShown: false,
+              }}
+            >
+              <Stack.Screen name="Splash" component={SplashScreen} />
+              <Stack.Screen name="Register" component={RegisterScreen} />
+              <Stack.Screen name="Login" component={LoginScreen} />
+              <Stack.Screen name="Layout" component={LayoutScreen} />
+              <Stack.Screen name="Cart" component={CartScreen} />
+              <Stack.Screen name="MealDetails" component={MealDetails} />
+              <Stack.Screen name="Test" component={Test} />
+            </Stack.Navigator>
+          </SafeAreaView>
 
-        <StatusBar />
-      </NavigationContainer>
+          <StatusBar />
+        </NavigationContainer>
+      </NotificationProvider>
     </AuthProvider>
   );
 }
