@@ -21,7 +21,7 @@ export default function App() {
         <NavigationContainer>
           <SafeAreaView style={{ flex: 1 }}>
             <Stack.Navigator
-              initialRouteName="Layout"
+              initialRouteName="Login"
               screenOptions={{
                 headerShown: false,
               }}
