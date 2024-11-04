@@ -48,6 +48,7 @@ export default function MealDetails({ navigation, route }) {
       let productsArray = productsStorage ? JSON.parse(productsStorage) : [];
 
       productsArray.push({
+        id: Date.now(),
         title: product.title.en,
         description: product.description.en || product.description,
         img: product.image,
@@ -57,6 +58,7 @@ export default function MealDetails({ navigation, route }) {
         bread,
         combo,
         extraList,
+        quantity: 1,
       });
 
       await AsyncStorage.setItem('userId', JSON.stringify(productsArray));
@@ -92,7 +94,7 @@ export default function MealDetails({ navigation, route }) {
           </View>
 
           {/* Title & Description */}
-          <Text className='font-bold text-3xl px-6 my-1'>{product.title.en}</Text>
+          <Text className='font-bold text-3xl px-6 my-1'>{product.title.en||product.title}</Text>
           <Text className='text-base px-6 my-1'>{product.description.en || product.description}</Text>
 
           <ScrollView>
