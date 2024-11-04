@@ -1,6 +1,7 @@
 export const productsList = [
     //burger
     {
+        topSelling:true,
         title: { en: "shiitake mushroom", ar: "شيتاكي مشروم" },
         description: {
             en: "Sautéed mushroom, cheddar cheese, and creamy mayonnaise spread on top of our pure beef burger patty.",
