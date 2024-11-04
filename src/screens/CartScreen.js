@@ -8,18 +8,20 @@ import CartCard from '../components/CartCard';
 
 export default function CartScreen({ navigation }) {
 
-  const { notifications, updateNotifications } = useContext(NotificationContext);
+  const { notifications } = useContext(NotificationContext);
   const [productsArray, setProductsArray] = useState([]);
-  var subTotal = 0;
+  const [subTotal, setSubTotal] = useState(0);
 
-  const getData = async () => {
+
+  async function getData() {
     const productsStorage = await AsyncStorage.getItem('userId') || [];
     const arr = productsStorage ? JSON.parse(productsStorage) : [];
     setProductsArray(arr);
     console.log(arr);
     // AsyncStorage.clear();
-    // updateNotifications()
-  };
+    const total = arr.reduce((sum, product) => sum + (product.total || product.price) * product.quantity, 0);
+    setSubTotal(total);
+  }
 
   useEffect(() => {
     getData();
@@ -51,15 +53,9 @@ export default function CartScreen({ navigation }) {
 
               {
                 productsArray.map((p) => {
-                  subTotal += (p.total || p.price);
-                  return <CartCard key={p.id} product={p} />
+                  return <CartCard key={p.id} product={p} refreshCart={getData} />
                 })
               }
-              {/* <CartCard product={product} />
-              <CartCard product={product} />
-              <CartCard product={product} /> */}
-
-
 
             </ScrollView>
 
@@ -72,12 +68,12 @@ export default function CartScreen({ navigation }) {
               </View>
               <View className='flex flex-row justify-between'>
                 <Text className='p-4 text-xl'>Taxes</Text>
-                <Text className='p-4 text-xl font-bold'>{subTotal*0.3} EGP</Text>
+                <Text className='p-4 text-xl font-bold'>{subTotal * 0.3} EGP</Text>
               </View>
               <Hr />
               <View className='flex flex-row justify-between'>
                 <Text className='p-4 text-3xl font-bold'>The Total</Text>
-                <Text className='p-4 text-3xl font-bold'>{subTotal*1.3} EGP</Text>
+                <Text className='p-4 text-3xl font-bold'>{subTotal * 1.3} EGP</Text>
               </View>
 
               {/* Add Button */}

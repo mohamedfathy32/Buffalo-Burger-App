@@ -1,11 +1,44 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NotificationContext } from '../utils/context';
 
-export default function CartCard({ product }) {
+export default function CartCard({ product, refreshCart }) {
 
+    const { updateNotifications } = useContext(NotificationContext);
     const [reveal, setReveal] = useState(false);
-    const [quantity, setQuantity] = useState(1);
+    const [quantity, setQuantity] = useState(product.quantity);
+
+    const removeItem = async () => {
+        const productsStorage = await AsyncStorage.getItem('userId');
+        let productsArray = productsStorage ? JSON.parse(productsStorage) : [];
+        let newArr = [];
+        productsArray.map((prd) => {
+            prd.id !== product.id && newArr.push(prd);
+        });
+        await AsyncStorage.setItem('userId', JSON.stringify(newArr));
+        updateNotifications();
+        refreshCart();
+
+    };
+
+    const modifyItem = async (q) => {
+        const productsStorage = await AsyncStorage.getItem('userId');
+        let productsArray = productsStorage ? JSON.parse(productsStorage) : [];
+        let newArr = [];
+        productsArray.map((prd) => {
+
+            if (prd.id === product.id) {
+                prd.quantity = q;
+            }
+
+            newArr.push(prd);
+        });
+        await AsyncStorage.setItem('userId', JSON.stringify(newArr));
+        updateNotifications();
+        refreshCart();
+    };
 
     return (
         <>
@@ -21,12 +54,15 @@ export default function CartCard({ product }) {
                         />
                         <View className='flex'>
                             <Text className='text-lg font-bold'>{product.title}</Text>
-                            <Text className=''>{product.total||product.price} EGP</Text>
+                            <Text className=''>{(product.total || product.price) * quantity} EGP</Text>
                             <View className='flex flex-row justify-around items-center my-1 w-3/4'>
 
                                 <TouchableOpacity
                                     className=' bg-white p-1 rounded-full border-2 border-orange-600'
-                                    onPress={() => { setQuantity(quantity - 1) }}>
+                                    onPress={() => {
+                                        (quantity - 1) === 0 ? removeItem() : modifyItem(quantity - 1);
+                                        setQuantity(quantity - 1);
+                                    }}>
                                     <MaterialIcons name='remove' size={20} color={'#f97316'} />
                                 </TouchableOpacity>
 
@@ -35,7 +71,10 @@ export default function CartCard({ product }) {
 
                                 <TouchableOpacity
                                     className='bg-orange-600 p-1 border-2 border-transparent rounded-full'
-                                    onPress={() => { setQuantity(quantity + 1) }}
+                                    onPress={() => {
+                                        modifyItem(quantity + 1);
+                                        setQuantity(quantity + 1);
+                                    }}
                                 >
                                     <MaterialIcons name='add' size={20} color={'white'} />
                                 </TouchableOpacity>
@@ -44,9 +83,9 @@ export default function CartCard({ product }) {
                         </View>
                     </View>
 
-                    <TouchableOpacity 
-                    className='mx-6'
-                    onPress={() => { reveal ? setReveal(false) : setReveal(true) }}>
+                    <TouchableOpacity
+                        className='mx-6'
+                        onPress={() => { reveal ? setReveal(false) : setReveal(true) }}>
                         <MaterialIcons name={reveal ? `arrow-drop-up` : `arrow-drop-down`} size={60} />
                     </TouchableOpacity>
 
