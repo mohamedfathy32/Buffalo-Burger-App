@@ -36,7 +36,6 @@ export default function LayoutScreen({ navigation }) {
         ),
 
       })}
-
     >
 
       <Tab.Screen name='Profile' component={ProfileScreen}
@@ -110,77 +109,6 @@ export default function LayoutScreen({ navigation }) {
         }}
       />
 
-      <Tab.Screen name='Settings' component={Settings}
-        options={{
-          // tabBarStyle: { display: 'none' },
-          tabBarButton: () => null,
-
-          header: () => <View className='flex flex-row justify-end items-center my-3 '>
-            <Text className='mx-4 text-xl font-bold'>Settings</Text>
-            <TouchableOpacity className='mx-4' onPress={() => { navigation.goBack(); }}>
-              {/* En */}
-              {/* <MaterialIcons name='arrow-back' size={24} /> */}
-              {/* Ar */}
-              <MaterialIcons name='arrow-forward' size={24} />
-            </TouchableOpacity>
-          </View>,
-
-        }}
-      />
-
-      <Tab.Screen name='Requests' component={RequestsScreen}
-        options={{
-          tabBarStyle: { display: 'none' },
-          tabBarButton: () => null,
-
-          header: () => <View className='flex flex-row justify-end items-center my-3 '>
-            <Text className='mx-4 text-xl font-bold'>My Requests</Text>
-            <TouchableOpacity className='mx-4' onPress={() => { navigation.goBack(); }}>
-              {/* En */}
-              {/* <MaterialIcons name='arrow-back' size={24} /> */}
-              {/* Ar */}
-              <MaterialIcons name='arrow-forward' size={24} />
-            </TouchableOpacity>
-          </View>,
-
-        }}
-      />
-
-      <Tab.Screen name='Address' component={AddressScreen}
-        options={{
-          tabBarStyle: { display: 'none' },
-          tabBarButton: () => null,
-
-          header: () => <View className='flex flex-row justify-end items-center my-3 '>
-            <Text className='mx-4 text-xl font-bold'>Saved Addresses</Text>
-            <TouchableOpacity className='mx-4' onPress={() => { navigation.goBack(); }}>
-              {/* En */}
-              {/* <MaterialIcons name='arrow-back' size={24} /> */}
-              {/* Ar */}
-              <MaterialIcons name='arrow-forward' size={24} />
-            </TouchableOpacity>
-          </View>,
-
-        }}
-      />
-
-      <Tab.Screen name='Review' component={ReviewScreen}
-        options={{
-          tabBarStyle: { display: 'none' },
-          tabBarButton: () => null,
-
-          header: () => <View className='flex flex-row justify-end items-center my-3 '>
-            <Text className='mx-4 text-xl font-bold'>Review</Text>
-            <TouchableOpacity className='mx-4' onPress={() => { navigation.goBack(); }}>
-              {/* En */}
-              {/* <MaterialIcons name='arrow-back' size={24} /> */}
-              {/* Ar */}
-              <MaterialIcons name='arrow-forward' size={24} />
-            </TouchableOpacity>
-          </View>,
-
-        }}
-      />
       <Tab.Screen name='Account' component={Account}
         options={{
           tabBarButton: () => null,
@@ -194,22 +122,6 @@ export default function LayoutScreen({ navigation }) {
 
         }}
       />
-
-      {/* <Tab.Screen name='MealDetails' component={MealDetails}
-        options={{
-          tabBarStyle: { display: 'none' },
-          tabBarButton: () => null,
-
-          header: () => <View className='flex flex-row justify-end items-center my-3 '>
-            <Text className='mx-4 text-xl font-bold'>Saved Addresses</Text>
-            <TouchableOpacity className='mx-4' onPress={() => { navigation.goBack(); }}>
-            
-              <MaterialIcons name='arrow-forward' size={24} />
-            </TouchableOpacity>
-          </View>,
-
-        }}
-      /> */}
 
     </ Tab.Navigator >
 
