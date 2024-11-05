@@ -11,20 +11,20 @@ export default function CartCard({ product, refreshCart }) {
     const [quantity, setQuantity] = useState(product.quantity);
 
     const removeItem = async () => {
-        const productsStorage = await AsyncStorage.getItem('userId');
+        const productsStorage = await AsyncStorage.getItem('cart');
         let productsArray = productsStorage ? JSON.parse(productsStorage) : [];
         let newArr = [];
         productsArray.map((prd) => {
             prd.id !== product.id && newArr.push(prd);
         });
-        await AsyncStorage.setItem('userId', JSON.stringify(newArr));
+        await AsyncStorage.setItem('cart', JSON.stringify(newArr));
         updateNotifications();
         refreshCart();
 
     };
 
     const modifyItem = async (q) => {
-        const productsStorage = await AsyncStorage.getItem('userId');
+        const productsStorage = await AsyncStorage.getItem('cart');
         let productsArray = productsStorage ? JSON.parse(productsStorage) : [];
         let newArr = [];
         productsArray.map((prd) => {
@@ -35,7 +35,7 @@ export default function CartCard({ product, refreshCart }) {
 
             newArr.push(prd);
         });
-        await AsyncStorage.setItem('userId', JSON.stringify(newArr));
+        await AsyncStorage.setItem('cart', JSON.stringify(newArr));
         updateNotifications();
         refreshCart();
     };

@@ -32,19 +32,9 @@ export default function MealDetails({ navigation, route }) {
 
   };
 
-  {/* 
-  
-
-    userId:[
-    {prdTitle:'',prdDescription,prdImg:'',prdPrice:155,volume:volume,bread:bread,combo:combo,extraList:[]},
-    ],
-    
-
-  */}
-
   const addToCart = async () => {
     try {
-      const productsStorage = await AsyncStorage.getItem('userId');
+      const productsStorage = await AsyncStorage.getItem('cart');
       let productsArray = productsStorage ? JSON.parse(productsStorage) : [];
 
       productsArray.push({
@@ -61,7 +51,7 @@ export default function MealDetails({ navigation, route }) {
         quantity: 1,
       });
 
-      await AsyncStorage.setItem('userId', JSON.stringify(productsArray));
+      await AsyncStorage.setItem('cart', JSON.stringify(productsArray));
       alert('Added To Cart !');
       updateNotifications();
     } catch (e) {

@@ -14,7 +14,7 @@ export default function CartScreen({ navigation }) {
 
 
   async function getData() {
-    const productsStorage = await AsyncStorage.getItem('userId') || [];
+    const productsStorage = await AsyncStorage.getItem('cart') || [];
     const arr = productsStorage ? JSON.parse(productsStorage) : [];
     setProductsArray(arr);
     console.log(arr);

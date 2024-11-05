@@ -9,7 +9,7 @@ export const NotificationProvider = ({ children }) => {
 
     const updateNotifications = async () => {
 
-        const productsStorage = await AsyncStorage.getItem('userId');
+        const productsStorage = await AsyncStorage.getItem('cart');
         let productsArray = productsStorage ? JSON.parse(productsStorage) : [];
         setNotifications(productsArray.length);
 

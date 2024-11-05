@@ -28,9 +28,9 @@ const auth = initializeAuth(app, {
 });
 
 // Function to fetch data from Firebase
-export const fetchData = async () => {
+export const fetchData = async (collectionName) => {
   try {
-    const querySnapshot = await getDocs(collection(db, "products"));
+    const querySnapshot = await getDocs(collection(db, collectionName));
     const products = querySnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),

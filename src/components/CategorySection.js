@@ -1,21 +1,47 @@
 // CategorySection.js
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import ProductCard from "./ProductCard";
 import { fetchData } from "../utils/firebase";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { NotificationContext } from "../utils/context";
 
 const CategorySection = ({ category, navigation }) => {
   const [products, setProducts] = useState([]);
+  const { updateNotifications } = useContext(NotificationContext);
+
 
   useEffect(() => {
     const getProducts = async () => {
-      const data = await fetchData();
+      const data = await fetchData('products');
       setProducts(data);
       // console.log(data);
     };
 
     getProducts();
   }, []);
+
+  const addToCart = async (product) => {
+    try {
+      const productsStorage = await AsyncStorage.getItem('cart');
+      let productsArray = productsStorage ? JSON.parse(productsStorage) : [];
+
+      productsArray.push({
+        id: Date.now(),
+        img: product.image,
+        title: product.title.en,
+        quantity: 1,
+        price: product.price,
+        total: product.price,
+      });
+
+      await AsyncStorage.setItem('cart', JSON.stringify(productsArray));
+      alert('Added To Cart !');
+      updateNotifications();
+    } catch (e) {
+      console.warn(e);
+    }
+  };
 
   return (
     <>
@@ -29,7 +55,7 @@ const CategorySection = ({ category, navigation }) => {
           <TouchableOpacity
             key={product.title.en}
             onPress={() => {
-              navigation.navigate("MealDetails", { product });
+              product.details ? navigation.navigate('MealDetails', { product }) : addToCart(product)
             }}
           >
             <ProductCard product={product} />
