@@ -1,9 +1,7 @@
-import React from "react";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image } from "react-native";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 export default function MainProductCard({ product }) {
-
   return (
     <View className="relative flex items-ed w-11/12 md:w-80 bg-neutral-200 rounded-xl shadow-lg p-4 mx-auto my-10">
       <View className="absolute -top-1/2 h-32 w-1/3 flex flex-row bg-transparent items-center justify-center">
@@ -18,7 +16,7 @@ export default function MainProductCard({ product }) {
         <Text className="text-lg font-semibold uppercase">
           {product.title.en}
         </Text>
-        <Text className="text-neutral-400 my-2 line-clamp-2">
+        <Text className="text-neutral-400 my-2">
           {product.description.en}
         </Text>
 

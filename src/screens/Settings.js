@@ -1,7 +1,6 @@
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
-import React from 'react'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { useAuth } from '../../AuthContext ';
+import { useAuth } from '../utils/AuthContext ';
 
 export default function Settings({ navigation }) {
   const { logout } = useAuth();
@@ -77,10 +76,7 @@ export default function Settings({ navigation }) {
         <TouchableOpacity className='flex flex-row justify-end p-3' onPress={() => { handleLogout() }}>
           <Text className='mx-3'>Log Out</Text>
         </TouchableOpacity>
-
-
       </View>
     </ScrollView>
-
   )
 }

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { View, TextInput, Button, Text, StyleSheet } from "react-native";
-import {  login } from "../utils/firebase";
+import { login } from "../utils/firebase";
 
 export default function LoginScreen(props) {
   const [email, setEmail] = useState("");
@@ -10,9 +10,9 @@ export default function LoginScreen(props) {
   const handleLogin = async () => {
     setMessage(""); // Clear previous messages
     try {
-      const userCredential = await login(email, password); 
+      const userCredential = await login(email, password);
       setMessage(`Logged in as: ${userCredential}`);
-      props.navigation.navigate('Layout'); 
+      props.navigation.navigate('BottomLayout');
     } catch (error) {
       setMessage(`Login failed: ${error.message}`);
     }

@@ -1,8 +1,7 @@
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { View, Text, TouchableOpacity } from 'react-native'
-import React from 'react'
 
-export default function RequestsScreen({ navigation }) {
+export default function OrderHistory({ navigation }) {
   return (
     <View className='flex-1'>
 

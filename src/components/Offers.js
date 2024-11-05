@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { View, ScrollView, TouchableOpacity, Image } from 'react-native'
+import { useEffect, useState } from 'react'
+import { View, ScrollView, Image } from 'react-native'
 import { fetchData } from '../utils/firebase'
 
 export default function Offers() {

@@ -2,11 +2,11 @@ import { View, Text, TouchableOpacity, Image } from 'react-native'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import React, { useContext, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { NotificationContext } from '../utils/context';
+import { CartContext } from '../utils/CartContext';
 
 export default function CartCard({ product, refreshCart }) {
 
-    const { updateNotifications } = useContext(NotificationContext);
+    const { updateCart } = useContext(CartContext);
     const [reveal, setReveal] = useState(false);
     const [quantity, setQuantity] = useState(product.quantity);
 
@@ -18,7 +18,7 @@ export default function CartCard({ product, refreshCart }) {
             prd.id !== product.id && newArr.push(prd);
         });
         await AsyncStorage.setItem('cart', JSON.stringify(newArr));
-        updateNotifications();
+        updateCart();
         refreshCart();
 
     };
@@ -36,7 +36,7 @@ export default function CartCard({ product, refreshCart }) {
             newArr.push(prd);
         });
         await AsyncStorage.setItem('cart', JSON.stringify(newArr));
-        updateNotifications();
+        updateCart();
         refreshCart();
     };
 
@@ -48,7 +48,7 @@ export default function CartCard({ product, refreshCart }) {
 
                     <View className='flex flex-row w-4/5 my-3'>
                         <Image
-                            source={{ uri: product.img }}
+                            source={{ uri: product.image }}
                             className="w-1/2 h-auto"
                             resizeMode="contain"
                         />
@@ -58,7 +58,7 @@ export default function CartCard({ product, refreshCart }) {
                             <View className='flex flex-row justify-around items-center my-1 w-3/4'>
 
                                 <TouchableOpacity
-                                    className=' bg-white p-1 rounded-full border-2 border-orange-600'
+                                    className=' bg-white p-1 rounded-full border-2 border-[#ff5f00]'
                                     onPress={() => {
                                         (quantity - 1) === 0 ? removeItem() : modifyItem(quantity - 1);
                                         setQuantity(quantity - 1);
@@ -70,7 +70,7 @@ export default function CartCard({ product, refreshCart }) {
                                 <Text className='w-1/3 text-center'>{quantity}</Text>
 
                                 <TouchableOpacity
-                                    className='bg-orange-600 p-1 border-2 border-transparent rounded-full'
+                                    className='bg-[#ff5f00] p-1 border-2 border-transparent rounded-full'
                                     onPress={() => {
                                         modifyItem(quantity + 1);
                                         setQuantity(quantity + 1);

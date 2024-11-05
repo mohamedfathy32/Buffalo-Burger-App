@@ -1,14 +1,12 @@
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { NotificationContext } from '../utils/context';
-import Hr from '../components/Hr';
+import { CartContext } from '../utils/CartContext';
 import CartCard from '../components/CartCard';
 
 export default function CartScreen({ navigation }) {
-
-  const { notifications } = useContext(NotificationContext);
+  const { cart } = useContext(CartContext);
   const [productsArray, setProductsArray] = useState([]);
   const [subTotal, setSubTotal] = useState(0);
 
@@ -18,11 +16,9 @@ export default function CartScreen({ navigation }) {
     const arr = productsStorage ? JSON.parse(productsStorage) : [];
     setProductsArray(arr);
     console.log(arr);
-    // AsyncStorage.clear();
     const total = arr.reduce((sum, product) => sum + (product.total || product.price) * product.quantity, 0);
-    setSubTotal(total);
+    setSubTotal(total)
   }
-
   useEffect(() => {
     getData();
   }, []);
@@ -39,7 +35,7 @@ export default function CartScreen({ navigation }) {
       </View>
       {
         // If async storage is empty return 'Your cart is empty' message
-        !notifications ?
+        !cart ?
           // 'Your cart is empty' Message
           <View className='w-2/3 bg-orange-200 mx-auto p-4 rounded-xl'>
             <Text className='text-orange-500 font-bold text-center'>Your cart is empty</Text>
@@ -47,7 +43,7 @@ export default function CartScreen({ navigation }) {
           <>
             <ScrollView>
 
-              <Text className='text-orange-600 font-bold text-lg px-4'>The Offers</Text>
+              <Text className='text-[#ff5f00] font-bold text-lg px-4'>The Offers</Text>
 
               {/* Product Card */}
 
@@ -70,7 +66,7 @@ export default function CartScreen({ navigation }) {
                 <Text className='p-4 text-xl'>Taxes</Text>
                 <Text className='p-4 text-xl font-bold'>{subTotal * 0.3} EGP</Text>
               </View>
-              <Hr />
+              <View className=' border-t border-t-gray-300' />
               <View className='flex flex-row justify-between'>
                 <Text className='p-4 text-3xl font-bold'>The Total</Text>
                 <Text className='p-4 text-3xl font-bold'>{subTotal * 1.3} EGP</Text>
@@ -84,7 +80,7 @@ export default function CartScreen({ navigation }) {
               >
 
                 <View className='flex flex-row '>
-                  <Text className='w-full mx-auto text-orange-600 text-center font-bold text-lg uppercase'>
+                  <Text className='w-full mx-auto text-[#ff5f00] text-center font-bold text-lg uppercase'>
                     + Add More Items
                   </Text>
                 </View>
@@ -92,7 +88,7 @@ export default function CartScreen({ navigation }) {
               </TouchableOpacity>
 
               {/* Checkout Button */}
-              <TouchableOpacity className='bg-orange-600 w-11/12 mx-auto my-1 p-3 rounded-xl flex flex-row justify-between'
+              <TouchableOpacity className='bg-[#ff5f00] w-11/12 mx-auto my-1 p-3 rounded-xl flex flex-row justify-between'
                 onPress={() => {
                 }}
               >

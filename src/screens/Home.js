@@ -1,15 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
-import Offers from "../components/Offers";
-import MainProductCard from "../components/MainProductCard";
-import TechnicalSupport from "../components/TechnicalSupport";
 import { fetchData } from "../utils/firebase";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { NotificationContext } from "../utils/context";
+import { CartContext } from "../utils/CartContext";
+import Offers from "../components/Offers";
+import MainProductCard from "../components/ProductCardMain";
+import TechnicalSupport from "../components/TechnicalSupport";
 
-export default function MainScreen({ navigation }) {
-  const { updateNotifications } = useContext(NotificationContext);
-
+export default function HomeScreen({ navigation }) {
+  const { updateCart } = useContext(CartContext)
   const [products, setProducts] = useState([])
   const [topSellings, setTopSellings] = useState([])
 
@@ -27,7 +26,7 @@ export default function MainScreen({ navigation }) {
 
       productsArray.push({
         id: Date.now(),
-        img: product.image,
+        image: product.image,
         title: product.title.en,
         quantity: 1,
         price: product.price,
@@ -36,7 +35,7 @@ export default function MainScreen({ navigation }) {
 
       await AsyncStorage.setItem('cart', JSON.stringify(productsArray));
       alert('Added To Cart !');
-      updateNotifications();
+      updateCart();
     } catch (e) {
       console.warn(e);
     }
@@ -56,7 +55,7 @@ export default function MainScreen({ navigation }) {
         {/* Products */}
         <View className="m-5 flex flex-row">
           <Text className="font-bold text-orange-500 text-lg uppercase">
-            The Special
+            Featured
           </Text>
         </View>
         {products?.map(product =>
