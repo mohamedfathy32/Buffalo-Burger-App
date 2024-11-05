@@ -5,7 +5,7 @@ import { useAuth } from '../../AuthContext ';
 
 export default function Settings({ navigation }) {
   const { logout } = useAuth();
-  const handleLogout = ()=>{
+  const handleLogout = () => {
     logout;
     navigation.navigate('Login');
   }
@@ -13,6 +13,14 @@ export default function Settings({ navigation }) {
     <ScrollView>
 
       <View className='flex-1'>
+
+        {/* Header */}
+        <View className='flex flex-row justify-end items-center my-3 '>
+          <Text className='mx-4 text-xl font-bold'>Settings</Text>
+          <TouchableOpacity className='mx-4' onPress={() => { navigation.navigate('Profile'); }}>
+            <MaterialIcons name='arrow-forward' size={24} />
+          </TouchableOpacity>
+        </View>
 
         <View className='flex flex-row justify-end bg-gray-200 p-2'>
           <Text className='mx-3 font-bold text-lg'>Account Details</Text>
@@ -66,7 +74,7 @@ export default function Settings({ navigation }) {
           <Text className='mx-3 font-bold text-lg'>App Version</Text>
         </View>
 
-        <TouchableOpacity className='flex flex-row justify-end p-3' onPress={()=>{handleLogout()}}>
+        <TouchableOpacity className='flex flex-row justify-end p-3' onPress={() => { handleLogout() }}>
           <Text className='mx-3'>Log Out</Text>
         </TouchableOpacity>
 

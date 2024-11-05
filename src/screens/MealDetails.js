@@ -17,7 +17,7 @@ export default function MealDetails({ navigation, route }) {
   const [extra, setExtra] = useState(0);
   const [extraList, setExtraList] = useState([0, 0, 0, 0, 0, 0]);
   const total = product.price + breadList[bread].price + combo.price + extra;
-  const { notifications, updateNotifications } = useContext(NotificationContext);
+  const { updateNotifications } = useContext(NotificationContext);
 
   const extraCal = (index) => {
     setExtraList(
@@ -94,7 +94,7 @@ export default function MealDetails({ navigation, route }) {
           </View>
 
           {/* Title & Description */}
-          <Text className='font-bold text-3xl px-6 my-1'>{product.title.en||product.title}</Text>
+          <Text className='font-bold text-3xl px-6 my-1'>{product.title.en || product.title}</Text>
           <Text className='text-base px-6 my-1'>{product.description.en || product.description}</Text>
 
           <ScrollView>
