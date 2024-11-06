@@ -58,7 +58,7 @@ export default function BottomLayout({ navigation }) {
               </View>
             </TouchableOpacity>
             <View className='flex flex-row justify-center w-2/3'>
-              <Text className='font-bold text-2xl px-5'>Hello, {username}</Text>
+              <Text className='font-bold text-2xl px-5'>Hello, {username.split(' ')[0]}</Text>
             </View>
           </View>
         }} />
@@ -78,7 +78,7 @@ export default function BottomLayout({ navigation }) {
               </View>
             </TouchableOpacity>
             <View className='flex flex-row justify-center w-2/3'>
-              <Text className='font-bold text-2xl px-5'>Hello, {username}</Text>
+              <Text className='font-bold text-2xl px-5'>Hello, {username.split(' ')[0]}</Text>
             </View>
           </View>
         }} />

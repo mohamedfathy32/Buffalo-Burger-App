@@ -7,6 +7,7 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { getUserInfoById } from "../utils/firebase";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import SplashScreen from "./Splash";
 
 export default function ProfileScreen({ navigation }) {
   const [userName, setUserName] = useState(null);
@@ -20,13 +21,13 @@ export default function ProfileScreen({ navigation }) {
       setUserName(data.username);
       setUserPhone(data.phoneNumber);
       setLoading(false);
-      console.log(data)
+      // console.log(data)
 
     };
     loadUserData();
   }, []);
   if (loading) {
-    return <Text>Loading...</Text>;
+    return <SplashScreen/>;
   }
 
 

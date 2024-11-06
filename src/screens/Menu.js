@@ -4,16 +4,20 @@ import { CartContext } from "../utils/CartContext";
 import { fetchData } from "../utils/firebase";
 import Offers from "../components/Offers";
 import ProductCard from "../components/ProductCardMenu";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import SplashScreen from "./Splash";
 
 export default function MenuScreen({ navigation }) {
   const [categories, setCategories] = useState([])
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { updateCart } = useContext(CartContext);
 
   useEffect(() => {
     (async () => {
       setCategories(await fetchData('categories'))
       setProducts(await fetchData('products'))
+      setLoading(false);
     })()
   }, [])
 
@@ -38,7 +42,9 @@ export default function MenuScreen({ navigation }) {
       console.warn(e);
     }
   };
-
+  if (loading) {
+    return <SplashScreen/>;
+  }
   return (
     <ScrollView>
       {categories.map(cat =>

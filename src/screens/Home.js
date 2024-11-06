@@ -7,6 +7,7 @@ import Offers from "../components/Offers";
 import MainProductCard from "../components/ProductCardMain";
 import TechnicalSupport from "../components/TechnicalSupport";
 import Swal from "sweetalert2";
+import SplashScreen from "./Splash";
 
 export default function HomeScreen({ navigation }) {
   const { updateCart } = useContext(CartContext)
@@ -53,7 +54,7 @@ export default function HomeScreen({ navigation }) {
   };
 
   if (loading) {
-    return <Text>Loading...</Text>;
+    return <SplashScreen/>;
   }
 
 
