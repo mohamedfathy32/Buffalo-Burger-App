@@ -6,11 +6,6 @@
     "orientation": "portrait",
     "icon": "./src/assets/Icon.png",
     "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./src/assets/BG.png",
-      "resizeMode": "contain",
-      "backgroundColor": "black"
-    },
     "ios": {
       "supportsTablet": true
     },
