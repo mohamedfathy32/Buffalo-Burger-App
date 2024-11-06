@@ -6,17 +6,23 @@ import { CartContext } from "../utils/CartContext";
 import Offers from "../components/Offers";
 import MainProductCard from "../components/ProductCardMain";
 import TechnicalSupport from "../components/TechnicalSupport";
+import Swal from "sweetalert2";
 
 export default function HomeScreen({ navigation }) {
   const { updateCart } = useContext(CartContext)
   const [products, setProducts] = useState([])
   const [topSellings, setTopSellings] = useState([])
+  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     (async () => {
       setProducts(await fetchData('products'))
       setTopSellings(await fetchData('topSellings'))
       const id = await AsyncStorage.getItem('userId')
+      setLoading(false);
+
+
     })()
 
 
@@ -38,12 +44,19 @@ export default function HomeScreen({ navigation }) {
       });
 
       await AsyncStorage.setItem('cart', JSON.stringify(productsArray));
-      alert('Added To Cart !');
+
+
       updateCart();
     } catch (e) {
       console.warn(e);
     }
   };
+
+  if (loading) {
+    return <Text>Loading...</Text>;
+  }
+
+
 
   return (
     <ScrollView>

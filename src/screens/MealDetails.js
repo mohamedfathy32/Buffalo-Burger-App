@@ -4,6 +4,7 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { CartContext } from '../utils/CartContext';
 import { fetchData } from '../utils/firebase';
+import Swal from 'sweetalert2';
 
 export default function MealDetails({ navigation, route }) {
 
@@ -36,7 +37,6 @@ export default function MealDetails({ navigation, route }) {
       setBread(breads[0].title.en)
       setComboOption(comboOptions[0].title.en)
       setDrink(drinks[0].title.en)
-
     })()
   }, [])
 
@@ -70,7 +70,11 @@ export default function MealDetails({ navigation, route }) {
       });
 
       await AsyncStorage.setItem('cart', JSON.stringify(productsArray));
-      alert('Added To Cart !');
+      Swal.fire({
+        title: "The Internet?",
+        text: "That thing is still around?",
+        icon: "success"
+      });
       updateCart();
     } catch (e) {
       console.warn(e);

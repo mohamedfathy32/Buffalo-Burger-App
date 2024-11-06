@@ -18,18 +18,18 @@ import { getUserInfoById } from '../utils/firebase';
 export default function BottomLayout({ navigation }) {
   const { cart, updateCart } = useContext(CartContext);
   const Tab = createBottomTabNavigator();
-  const [user, setUser] = useState({})
+  const [username, setUsername] = useState('')
 
   useEffect(() => {
     (async () => {
       const userId = await AsyncStorage.getItem('userId')
-      setUser(getUserInfoById(userId))
+      const data = await getUserInfoById(userId);
+      setUsername(data.username)
 
     })()
   }, [])
 
 
-  console.log(user)
 
 
   return (
@@ -58,7 +58,7 @@ export default function BottomLayout({ navigation }) {
               </View>
             </TouchableOpacity>
             <View className='flex flex-row justify-center w-2/3'>
-              <Text className='font-bold text-2xl px-5'>Hello, {JSON.stringify(user._j?.username)}</Text>
+              <Text className='font-bold text-2xl px-5'>Hello, {username}</Text>
             </View>
           </View>
         }} />
@@ -78,7 +78,7 @@ export default function BottomLayout({ navigation }) {
               </View>
             </TouchableOpacity>
             <View className='flex flex-row justify-center w-2/3'>
-              <Text className='font-bold text-2xl px-5'>Hello, Mohamed</Text>
+              <Text className='font-bold text-2xl px-5'>Hello, {username}</Text>
             </View>
           </View>
         }} />
