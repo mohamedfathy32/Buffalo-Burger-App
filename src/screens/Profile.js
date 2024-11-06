@@ -40,7 +40,7 @@ export default function ProfileScreen({ navigation }) {
 
           {/* Avatar */}
           <View className="bg-orange-200 rounded-full justify-center p-6 mx-4">
-            <Text className="font-bold text-xl">MO</Text>
+            <Text className="font-bold text-xl uppercase">{userName.slice(0, 2)}</Text>
           </View>
         </View>
 

@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
 
@@ -22,8 +23,8 @@ export const AuthProvider = ({ children }) => {
     try {
       await signOut(auth); // Sign out from Firebase
       setUser(null); // Reset user state
-      console.log('asd');
-      
+      await AsyncStorage.removeItem('userId')
+
     } catch (error) {
       console.error("Error during logout:", error);
     }

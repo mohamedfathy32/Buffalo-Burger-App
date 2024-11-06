@@ -20,7 +20,7 @@ export default function App() {
       <CartProvider>
         <NavigationContainer>
           <SafeAreaView style={{ flex: 1 }}>
-            <Stack.Navigator initialRouteName="BottomLayout" screenOptions={{ headerShown: false, }}>
+            <Stack.Navigator initialRouteName='Login' screenOptions={{ headerShown: false, }}>
               <Stack.Screen name="BottomLayout" component={BottomLayout} />
               <Stack.Screen name="Splash" component={SplashScreen} />
               <Stack.Screen name="Register" component={RegisterScreen} />

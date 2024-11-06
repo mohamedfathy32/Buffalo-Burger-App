@@ -16,7 +16,11 @@ export default function HomeScreen({ navigation }) {
     (async () => {
       setProducts(await fetchData('products'))
       setTopSellings(await fetchData('topSellings'))
+      const id = await AsyncStorage.getItem('userId')
     })()
+
+
+
   }, [])
 
   const addToCart = async (product) => {
@@ -28,9 +32,9 @@ export default function HomeScreen({ navigation }) {
         id: Date.now(),
         image: product.image,
         title: product.title.en,
-        quantity: 1,
-        price: product.price,
         total: product.price,
+        quantity: 1,
+        description: product.description.en
       });
 
       await AsyncStorage.setItem('cart', JSON.stringify(productsArray));

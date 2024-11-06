@@ -5,7 +5,7 @@ import { useAuth } from '../utils/AuthContext ';
 export default function Settings({ navigation }) {
   const { logout } = useAuth();
   const handleLogout = () => {
-    logout;
+    logout();
     navigation.navigate('Login');
   }
   return (

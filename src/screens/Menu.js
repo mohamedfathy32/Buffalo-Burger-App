@@ -25,10 +25,10 @@ export default function MenuScreen({ navigation }) {
       productsArray.push({
         id: Date.now(),
         image: product.image,
-        title: product.title.en,
-        quantity: 1,
-        price: product.price,
+        title: product.title?.en,
         total: product.price,
+        quantity: 1,
+        description: product.description?.en,
       });
 
       await AsyncStorage.setItem('cart', JSON.stringify(productsArray));
@@ -42,12 +42,12 @@ export default function MenuScreen({ navigation }) {
   return (
     <ScrollView>
       {categories.map(cat =>
-        <View key={cat.title.en}>
-          <Text className="m-5 flex flex-row font-bold text-orange-500 text-lg uppercase">{cat.title.en}</Text>
-          {cat.title.en === 'offers' ? <Offers /> : products.map(product =>
-            product.category === cat.title.en &&
+        <View key={cat.title?.en}>
+          <Text className="m-5 flex flex-row font-bold text-orange-500 text-lg uppercase">{cat.title?.en}</Text>
+          {cat.title?.en === 'offers' ? <Offers /> : products.map(product =>
+            product.category === cat.title?.en &&
             <TouchableOpacity
-              key={product.title.en}
+              key={product.title?.en}
               onPress={() => { product.details ? navigation.navigate('MealDetails', { product }) : addToCart(product) }}>
               <ProductCard product={product} />
             </TouchableOpacity>

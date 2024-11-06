@@ -65,8 +65,8 @@ export default function MealDetails({ navigation, route }) {
         title: product.title.en,
         total: totalPrice,
         quantity: 1,
-        description: product.description.en,
-        myExtras,
+        description: product.description?.en,
+        extras: myExtras,
       });
 
       await AsyncStorage.setItem('cart', JSON.stringify(productsArray));
@@ -149,30 +149,23 @@ export default function MealDetails({ navigation, route }) {
           {product.details.drinks && comboOption !== 'no combo' &&
             <View className='h-auto bg-neutral-200 my-1'>
               <Text className='text-center font-bold text-lg my-4'>Drinks</Text>
-              {drinks.map(drink => (
-                <TouchableOpacity key={drink.title.en} onPress={() => {
-                  // Update the selected drink to the current choice
-                  setDrink(drink.title.en);
-                }}>
+              {drinks.map(d =>
+                <TouchableOpacity key={d.title.en} onPress={() => { setDrink(d.title.en) }}>
                   <View className={`w-11/12 bg-white md:w-80 rounded-xl shadow-lg p-2 mx-auto my-2 flex flex-row`}>
                     <View className="w-2/3 flex flex-row">
                       <MaterialIcons
-                        name={drink.title.en === drink ? 'radio-button-checked' : 'radio-button-unchecked'}
-                        size={24}
-                        style={{ marginHorizontal: 3, color: drink.title.en === drink ? '#f97316' : 'black' }}
-                      />
-                      <Text className={`${drink.title.en === drink ? 'text-orange-500' : ''} mx-2 text-lg font-semibold capitalize`}>
-                        {drink.title.en}
+                        name={d.title.en === drink ? 'radio-button-checked' : 'radio-button-unchecked'}
+                        size={24} style={{ marginHorizontal: 3, color: d.title.en === drink ? '#f97316' : 'black' }} />
+                      <Text className={`${d.title.en === drink ? 'text-orange-500' : ''} mx-2 text-lg font-semibold capitalize`}>
+                        {d.title.en}
                       </Text>
                     </View>
                     <View className="w-1/3 flex flex-row bg-transparent items-center justify-center">
-                      <Text className={`${drink.title.en === drink ? 'text-orange-500' : ''}`}>
-                        + {drink.price} EGP
-                      </Text>
+                      <Text className={`${d.title.en === drink ? 'text-orange-500' : ''}`}>+ {d.price} EGP</Text>
                     </View>
                   </View>
                 </TouchableOpacity>
-              ))}
+              )}
             </View>
           }
 

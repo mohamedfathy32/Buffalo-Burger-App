@@ -1,22 +1,36 @@
-import { useState } from "react";
-import { View, TextInput, Button, Text, StyleSheet } from "react-native";
-import { login } from "../utils/firebase";
+import { useEffect, useState } from "react";
+import { View, TextInput, Button, StyleSheet, Text } from "react-native";
+import { getUserInfoById, login } from "../utils/firebase";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function LoginScreen(props) {
+export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
   const handleLogin = async () => {
-    setMessage(""); // Clear previous messages
     try {
       const userCredential = await login(email, password);
-      setMessage(`Logged in as: ${userCredential}`);
-      props.navigation.navigate('BottomLayout');
+      const userId = userCredential.user.uid;
+      const userinfo = getUserInfoById(userId)
+      if (userinfo) {
+        await AsyncStorage.setItem('userId', userId);
+        navigation.navigate('BottomLayout')
+      }
     } catch (error) {
-      setMessage(`Login failed: ${error.message}`);
+      // console.warn(error.message)
+      setMessage('not such user')
     }
   };
+  useEffect(() => {
+    (async () => {
+      const id = await AsyncStorage.getItem('userId');
+      if (id) {
+        navigation.navigate('BottomLayout')
+      }
+    })()
+  }, [])
+
 
   return (
     <View style={styles.container}>
@@ -36,7 +50,7 @@ export default function LoginScreen(props) {
         secureTextEntry
       />
       <Button title="Login" onPress={handleLogin} />
-      {message ? <Text style={styles.message}>{message}</Text> : null}
+      {message && <Text style={styles.message}>{message}</Text>}
     </View>
   );
 }

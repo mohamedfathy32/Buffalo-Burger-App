@@ -6,7 +6,7 @@ export default function SplashScreen(props) {
     useEffect(() => {
         const t = setTimeout(() => {
             props.navigation.navigate('Register');
-        }, 200);
+        }, 100);
 
         return () => clearTimeout(t);
     }, [])
