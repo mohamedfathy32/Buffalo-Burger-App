@@ -1,11 +1,11 @@
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { useAuth } from '../utils/AuthContext ';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Settings({ navigation }) {
-  const { logout } = useAuth();
-  const handleLogout = () => {
-    logout;
+  const handleLogout = async () => {
+
+    await AsyncStorage.removeItem('userId')
     navigation.navigate('Login');
   }
   return (

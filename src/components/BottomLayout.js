@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Entypo from '@expo/vector-icons/Entypo';
 import AntDesign from '@expo/vector-icons/AntDesign';
@@ -12,10 +12,26 @@ import MenuScreen from '../screens/Menu';
 import HomeScreen from '../screens/Home';
 import Account from '../screens/Account';
 import Password from '../screens/Password';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getUserInfoById } from '../utils/firebase';
 
 export default function BottomLayout({ navigation }) {
   const { cart, updateCart } = useContext(CartContext);
   const Tab = createBottomTabNavigator();
+  const [username, setUsername] = useState('')
+
+  useEffect(() => {
+    (async () => {
+      const userId = await AsyncStorage.getItem('userId')
+      const data = await getUserInfoById(userId);
+      setUsername(data.username)
+
+    })()
+  }, [])
+
+
+
+
   return (
     <Tab.Navigator
       initialRouteName='Main'
@@ -42,7 +58,7 @@ export default function BottomLayout({ navigation }) {
               </View>
             </TouchableOpacity>
             <View className='flex flex-row justify-center w-2/3'>
-              <Text className='font-bold text-2xl px-5'>Hello, Mohamed</Text>
+              <Text className='font-bold text-2xl px-5'>Hello, {username.split(' ')[0]}</Text>
             </View>
           </View>
         }} />
@@ -62,7 +78,7 @@ export default function BottomLayout({ navigation }) {
               </View>
             </TouchableOpacity>
             <View className='flex flex-row justify-center w-2/3'>
-              <Text className='font-bold text-2xl px-5'>Hello, Mohamed</Text>
+              <Text className='font-bold text-2xl px-5'>Hello, {username.split(' ')[0]}</Text>
             </View>
           </View>
         }} />

@@ -4,13 +4,8 @@
     "slug": "Buffalo-Burger",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/Icon.png",
+    "icon": "./src/assets/icon.png",
     "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./src/assets/BG.png",
-      "resizeMode": "contain",
-      "backgroundColor": "black"
-    },
     "ios": {
       "supportsTablet": true
     },

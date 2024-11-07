@@ -5,27 +5,31 @@ import Entypo from "@expo/vector-icons/Entypo";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { useAuth } from "../utils/AuthContext ";
-import { getUserByUid } from "../utils/firebase";
+import { getUserInfoById } from "../utils/firebase";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import SplashScreen from "./Splash";
 
 export default function ProfileScreen({ navigation }) {
-  const { user } = useAuth();
   const [userName, setUserName] = useState(null);
   const [userPhone, setUserPhone] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadUserData = async () => {
-      const data = await getUserByUid(user.uid);
+      const userId = await AsyncStorage.getItem('userId')
+      const data = await getUserInfoById(userId);
       setUserName(data.username);
-      setUserPhone(data.phone);
+      setUserPhone(data.phoneNumber);
       setLoading(false);
+      // console.log(data)
+
     };
     loadUserData();
   }, []);
   if (loading) {
-    return <Text>Loading...</Text>;
+    return <SplashScreen/>;
   }
+
 
   return (
     <SafeAreaView className="flex-1 bg-white">
@@ -40,7 +44,7 @@ export default function ProfileScreen({ navigation }) {
 
           {/* Avatar */}
           <View className="bg-orange-200 rounded-full justify-center p-6 mx-4">
-            <Text className="font-bold text-xl">MO</Text>
+            <Text className="font-bold text-xl uppercase">{userName.slice(0, 2)}</Text>
           </View>
         </View>
 
