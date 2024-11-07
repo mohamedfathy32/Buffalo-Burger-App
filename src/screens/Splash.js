@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { View, Image, Animated, Easing, StyleSheet } from 'react-native';
+import { View, Animated, Easing, StyleSheet } from 'react-native';
 
 export default function SplashScreen() {
   const rotateAnim = useRef(new Animated.Value(0)).current;  

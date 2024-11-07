@@ -84,7 +84,7 @@ export default function CartScreen({ navigation }) {
       ) : (
         <>
           <ScrollView>
-            <Text className='text-[#ff5f00] font-bold text-lg px-4'>The Offers</Text>
+            {/* <Text className='text-[#ff5f00] font-bold text-lg px-4'>The Offers</Text> */}
             {productsArray.map((p) => (
               <View key={p.id} className='h-auto bg-white w-11/12 mx-auto my-2 rounded-2xl'>
                 <View className='flex flex-row justify-between'>
@@ -136,7 +136,7 @@ export default function CartScreen({ navigation }) {
             </View>
             <View className=' border-t border-t-gray-300' />
             <View className='flex flex-row justify-between'>
-              <Text className='p-4 text-3xl font-bold'>The Total</Text>
+              <Text className='p-4 text-3xl font-bold'>Total</Text>
               <Text className='p-4 text-3xl font-bold'>{(subTotal).toFixed(2)} EGP</Text>
             </View>
             <TouchableOpacity
