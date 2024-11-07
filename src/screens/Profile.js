@@ -21,6 +21,7 @@ export default function ProfileScreen({ navigation }) {
       setUserName(data.username);
       setUserPhone(data.phoneNumber);
       setLoading(false);
+      // console.log(data)
 
     };
     loadUserData();
@@ -87,6 +88,7 @@ export default function ProfileScreen({ navigation }) {
         {/* Row 5 - Review / Evaluation*/}
         <TouchableOpacity
           onPress={() => {
+            navigation.navigate("Review");
           }}
         >
           <View className="flex flex-row items-center my-6 w-11/12 mx-auto justify-end ">
