@@ -78,13 +78,24 @@ export default function CartScreen({ navigation }) {
       </View>
 
       {productsArray.length === 0 ? (
-        <View className='w-2/3 bg-orange-200 mx-auto p-4 rounded-xl'>
-          <Text className='text-orange-500 font-bold text-center'>Your cart is empty</Text>
-        </View>
+        <>
+          <View className='flex justify- h-full'>
+            <View className='h-1/3 w-full my-16 bg-transparent'>
+              <Image
+                source={require('../assets/cart.png')}
+                resizeMode='contain'
+                className='w-full h-full'
+              />
+            </View>
+            <View className='w-2/3 bg-orange-200 mx-auto p-4 rounded-xl'>
+              <Text className='text-orange-500 font-bold text-center'>Your cart is empty</Text>
+            </View>
+          </View>
+        </>
       ) : (
         <>
           <ScrollView>
-            <Text className='text-[#ff5f00] font-bold text-lg px-4'>The Offers</Text>
+            {/* <Text className='text-[#ff5f00] font-bold text-lg px-4'>The Offers</Text> */}
             {productsArray.map((p) => (
               <View key={p.id} className='h-auto bg-white w-11/12 mx-auto my-2 rounded-2xl'>
                 <View className='flex flex-row justify-between'>
@@ -136,7 +147,7 @@ export default function CartScreen({ navigation }) {
             </View>
             <View className=' border-t border-t-gray-300' />
             <View className='flex flex-row justify-between'>
-              <Text className='p-4 text-3xl font-bold'>The Total</Text>
+              <Text className='p-4 text-3xl font-bold'>Total</Text>
               <Text className='p-4 text-3xl font-bold'>{(subTotal).toFixed(2)} EGP</Text>
             </View>
             <TouchableOpacity
