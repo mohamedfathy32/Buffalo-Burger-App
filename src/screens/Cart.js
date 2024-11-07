@@ -78,9 +78,20 @@ export default function CartScreen({ navigation }) {
       </View>
 
       {productsArray.length === 0 ? (
-        <View className='w-2/3 bg-orange-200 mx-auto p-4 rounded-xl'>
-          <Text className='text-orange-500 font-bold text-center'>Your cart is empty</Text>
-        </View>
+        <>
+          <View className='flex justify- h-full'>
+            <View className='h-1/3 w-full my-16 bg-transparent'>
+              <Image
+                source={require('../assets/cart.png')}
+                resizeMode='contain'
+                className='w-full h-full'
+              />
+            </View>
+            <View className='w-2/3 bg-orange-200 mx-auto p-4 rounded-xl'>
+              <Text className='text-orange-500 font-bold text-center'>Your cart is empty</Text>
+            </View>
+          </View>
+        </>
       ) : (
         <>
           <ScrollView>
