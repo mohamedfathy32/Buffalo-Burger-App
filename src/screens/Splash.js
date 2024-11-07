@@ -4,7 +4,7 @@ import { View, Animated, Easing, StyleSheet } from 'react-native';
 export default function SplashScreen() {
   const rotateAnim = useRef(new Animated.Value(0)).current;  
   const scaleAnim = useRef(new Animated.Value(1)).current;  
-
+  
   useEffect(() => {
     Animated.loop(
       Animated.parallel([
